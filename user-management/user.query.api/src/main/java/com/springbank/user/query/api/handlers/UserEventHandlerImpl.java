@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @ProcessingGroup("user-group")
-public class UserEventHandlerImpl implements UserEventHandler{
+public class UserEventHandlerImpl implements UserEventHandler {
 
     private final UserRepository userRepository;
 

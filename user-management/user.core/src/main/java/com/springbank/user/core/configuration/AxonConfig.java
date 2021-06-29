@@ -37,12 +37,14 @@ public class AxonConfig {
 
     @Bean
     public MongoClient mongo() {
-        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/test");
+        MongoFactory mongoFactory = new MongoFactory();
+        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20C");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .build();
+        mongoFactory.setMongoClientSettings(mongoClientSettings);
 
-        return MongoClients.create(mongoClientSettings);
+        return mongoFactory.createMongo();
     }
 
     @Bean
